@@ -1,0 +1,1166 @@
+#:kivy 1.11.1
+WindowManager:
+    Home:
+    TrainingPlan:
+    Calendar:
+
+<Home>:
+    name: "home"
+
+    canvas.before:
+        Color:
+            rgba: .143, .188, .219, 1    # Blue
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        pos: 0,0
+        size: root.width, root.height
+        color: 0, 0, 0, 0
+
+        Label:
+            id: maxmileagetext
+            markup: True
+            pos_hint: {'center_x': 0.12, 'center_y': 0.75}
+            text: "Max Mileage"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 14   
+
+        TextInput:
+            id: maxmileagetextbox
+            multiline: False
+            hint_text:'Input max mileage'
+            pos_hint: {'center_x': 0.12, 'center_y': 0.65}
+            size_hint: 0.15, 0.14
+            on_text:
+                # input text
+        Button:
+            text: 'Save'
+            font_size: 25
+            background_color: 0.1, 0.9, 0.6, 1
+            pos_hint: {'center_x': 0.12, 'center_y': 0.54}
+            size_hint: 0.15, 0.07
+            on_press:
+                root.maxmileageinput(maxmileagetextbox.text)
+
+        Label:
+            id: currentDayHome
+            markup: True
+            pos_hint: {'center_x': .5, 'center_y': .95}
+            text: "Selected day: 1"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 22
+
+        Label:
+            markup: True
+            pos_hint: {'center_x': .5, 'center_y': .87}
+            text: "Good Pain"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 30
+
+        Label:
+            id: curGoodPain
+            markup: True
+            pos_hint: {'center_x': .5, 'center_y': .8}
+            text: "Current Good Pain Value"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 30
+
+        Label:
+            markup: True
+            pos_hint: {'center_x': .5, 'center_y': .57}
+            text: "Bad Pain"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 30
+
+        Label:
+            id: curBadPain
+            markup: True
+            pos_hint: {'center_x': .5, 'center_y': .50}
+            text: "Current Bad Pain Value"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 30
+
+        GridLayout:
+            cols: 5
+            pos_hint: {'center_x': .5, 'center_y': .4}
+            size_hint: .5, .1
+
+            Button:
+                text: '1'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setBadPain(1)
+            Button:
+                text: '2'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setBadPain(2)
+            Button:
+                text: '3'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setBadPain(3)
+            Button:
+                text: '4'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setBadPain(4)
+            Button:
+                text: '5'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setBadPain(5)
+
+        Label:
+            id: currace
+            markup: True
+            pos_hint: {'center_x': .9, 'center_y': .9}
+            text: "Current Race"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 15
+
+        GridLayout:
+            rows: 5
+            pos_hint: {'center_x': .9, 'center_y': .6}
+            size_hint: .15, .5
+
+            Button:
+                text: 'Mile'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setRace(0)
+            Button:
+                text: '5k'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setRace(1)
+            Button:
+                text: '10k'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setRace(2)
+            Button:
+                text: 'Half Marathon'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setRace(3)
+            Button:
+                text: 'Marathon'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setRace(4)
+
+        GridLayout:
+            cols: 5
+            pos_hint: {'center_x': .5, 'center_y': .7}
+            size_hint: .5, .1
+
+            Button:
+                text: '1'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setGoodPain(1)
+            Button:
+                text: '2'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setGoodPain(2)
+            Button:
+                text: '3'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setGoodPain(3)
+            Button:
+                text: '4'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setGoodPain(4)
+            Button:
+                text: '5'
+                font_size: 15
+                background_color: 0.8, 0.2, 0.3, 1
+                on_press: root.setGoodPain(5)
+        GridLayout:
+            cols: 3
+            pos_hint: {'center_x': .5, 'center_y': .1}
+            size_hint: 1, .2
+
+            Button:
+                text: 'Home'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "home"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Training Plan'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "trainingplan"
+                    root.manager.transition.direction = "right"
+            Button:
+                text: 'Calendar'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "calendar"
+                    root.manager.transition.direction = "right"
+<TrainingPlan>:
+    name: "trainingplan"
+    canvas.before:
+        Color:
+            rgba: .25, .5, .5, 1    # Blue
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    FloatLayout:
+        pos: 0,0
+        size: root.width, root.height
+        color: 0, 0, 0, 0
+
+        TextInput:
+            id: mileageinput
+            multiline: False
+            hint_text:'Input mileage ran today'
+            pos_hint: {'center_x': 0.16, 'center_y': 0.65}
+            size_hint: 0.3, 0.14
+            on_text:
+                # input text
+        # Save button
+        Button:
+            text: 'Save'
+            font_size: 25
+            background_color: 0.1, 0.9, 0.6, 1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+            size_hint: 0.15, 0.07
+            on_press:
+                root.mileageinput(mileageinput.text)
+                root.descriptioninput(rundescription.text)
+
+        TextInput:
+            id: rundescription
+            hint_text:'Input feelings on run'
+            pos_hint: {'center_x': 0.16, 'center_y': 0.50}
+            size_hint: 0.3, 0.14
+            on_text:
+                # input text
+
+        Label:
+            markup: True
+            id: activeday
+            pos_hint: {'center_x': .5, 'center_y': .95}
+            text: "Select active day"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 30
+
+        Label:
+            markup: True
+            id: riskofinjury
+            pos_hint: {'center_x': .9, 'center_y': .96}
+            text: "Risk of injury"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 20
+
+        GridLayout:
+            cols: 3
+            pos_hint: {'center_x': .5, 'center_y': .1}
+            size_hint: 1, .2
+            color: 0, 0, 0, 0
+
+            Button:
+                text: 'Home'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "home"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Training Plan'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "trainingplan"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Calendar'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "calendar"
+                    root.manager.transition.direction = "right"
+        GridLayout:
+            cols: 7
+            rows: 1
+            pos_hint: {'center_x': .5, 'center_y': .85}
+            size_hint: .95, .15
+            color: 0, 0, 0, 0
+
+            Button:
+                text: 'Day 1'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setDay(1)
+
+            Button:
+                text: 'Day 2'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setDay(2)
+            Button:
+                text: 'Day 3'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setDay(3)
+
+            Button:
+                text: 'Day 4'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setDay(4)
+
+            Button:
+                text: 'Day 5'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setDay(5)
+            Button:
+                text: 'Day 6'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setDay(6)
+
+            Button:
+                text: 'Day 7'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setDay(7)
+
+
+
+
+
+<Calendar>:
+    name: "calendar"
+    canvas.before:
+        Color:
+            rgba: .2, .2, .4, 1    # Blue
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    FloatLayout:
+        pos: 0,0
+        size: root.width, root.height
+        color: 0, 0, 0, 0
+
+        Label:
+            markup: True
+            id: workout
+            pos_hint: {'center_x': .6, 'center_y': .4}
+            text: "Select a week"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 15
+
+        Label:
+            markup: True
+            id: badpaincal
+            pos_hint: {'center_x': .2, 'center_y': .3}
+            text: "Bain pain for current day"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 15
+        Label:
+            markup: True
+            id: goodpaincal
+            pos_hint: {'center_x': .4, 'center_y': .3}
+            text: "Bain pain for current day"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 15
+
+
+        #this shows which week is currently selected
+        Label:
+            markup: True
+            id: cycleof
+            pos_hint: {'center_x': .2, 'center_y': .94}
+            text: "Cycle 1/3"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 30
+        Label:
+            markup: True
+            id: activedaycalendar
+            pos_hint: {'center_x': .85, 'center_y': .94}
+            text: "Active Day: 1"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 15
+        Label:
+            markup: True
+            id: activeweekcalendar
+            pos_hint: {'center_x': .7, 'center_y': .94}
+            text: "Active Week: 1"
+            color: 0, 0, 0, 1
+            outline_color: .248, .228, .204, 1
+            font_size: 15
+        #change weeks
+        Button:
+            text: '==>'
+            font_size: 15
+            background_color: 1, 0, 0, 1
+            pos_hint: {'center_x': .5, 'center_y': .94}
+            size_hint: 0.1, 0.07
+            on_press: root.increasecurrentcycle()
+        Button:
+            text: '<=='
+            font_size: 15
+            background_color: 1, 0, 0, 1
+            pos_hint: {'center_x': 0.4, 'center_y': 0.94}
+            size_hint: 0.1, 0.07
+            on_press: root.decreasecurrentcycle()
+
+        GridLayout:
+            cols: 7
+            rows: 4
+            pos_hint: {'center_x': .5, 'center_y': .66}
+            size_hint: .95, .45
+            color: 0, 0, 0, 0
+            spacing: 10, 10
+            padding: 10, 10
+
+
+            Button:
+                text: 'Day 1'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(1)
+                    root.setdaycalendar(1)
+            Button:
+                text: 'Day 2'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(1)
+                    root.setdaycalendar(2)
+            Button:
+                text: 'Day 3'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press: root.setdaycalendar(3)
+
+            Button:
+                text: 'Day 4'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(1)
+                    root.setdaycalendar(4)
+
+            Button:
+                text: 'Day 5'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(1)
+                    root.setdaycalendar(5)
+            Button:
+                text: 'Day 6'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(1)
+                    root.setdaycalendar(6)
+
+            Button:
+                text: 'Day 7'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(1)
+                    root.setdaycalendar(7)
+
+            Button:
+                text: 'Day 8'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(2)
+                    root.setdaycalendar(1)
+
+            Button:
+                text: 'Day 9'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(2)
+                    root.setdaycalendar(2)
+            Button:
+                text: 'Day 10'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(2)
+                    root.setdaycalendar(3)
+
+            Button:
+                text: 'Day 11'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(2)
+                    root.setdaycalendar(4)
+
+            Button:
+                text: 'Day 12'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(2)
+                    root.setdaycalendar(5)
+            Button:
+                text: 'Day 13'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(2)
+                    root.setdaycalendar(6)
+
+            Button:
+                text: 'Day 14'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(2)
+                    root.setdaycalendar(7)
+
+            Button:
+                text: 'Day 15'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(3)
+                    root.setdaycalendar(1)
+
+            Button:
+                text: 'Day 16'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(3)
+                    root.setdaycalendar(2)
+            Button:
+                text: 'Day 17'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(3)
+                    root.setdaycalendar(3)
+
+            Button:
+                text: 'Day 18'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(3)
+                    root.setdaycalendar(4)
+
+            Button:
+                text: 'Day 19'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(3)
+                    root.setdaycalendar(5)
+            Button:
+                text: 'Day 20'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(3)
+                    root.setdaycalendar(6)
+
+            Button:
+                text: 'Day 21'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(3)
+                    root.setdaycalendar(7)
+
+            Button:
+                text: 'Day 22'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(4)
+                    root.setdaycalendar(1)
+
+            Button:
+                text: 'Day 23'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(4)
+                    root.setdaycalendar(2)
+            Button:
+                text: 'Day 24'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(4)
+                    root.setdaycalendar(3)
+
+            Button:
+                text: 'Day 25'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(4)
+                    root.setdaycalendar(4)
+
+            Button:
+                text: 'Day 26'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(4)
+                    root.setdaycalendar(5)
+            Button:
+                text: 'Day 27'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(4)
+                    root.setdaycalendar(6)
+
+            Button:
+                text: 'Day 28'
+                font_size: 15
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    root.setweek(4)
+                    root.setdaycalendar(7)
+
+
+        GridLayout:
+            cols: 3
+            pos_hint: {'center_x': .5, 'center_y': .1}
+            size_hint: 1, .2
+
+            Button:
+                text: 'Home'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "home"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Training Plan'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "trainingplan"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: 'Calendar'
+                font_size: 25
+                background_color: 0.1, 0.9, 0.6, 1
+                on_press:
+                    app.root.current = "calendar"
+                    root.manager.transition.direction = "right"
+        GridLayout:
+            cols: 7
+            rows: 4
+            pos_hint: {'center_x': .5, 'center_y': .63}
+            size_hint: .95, .45
+            color: 0, 0, 0, 0
+            spacing: 10, 10
+            padding: 10, 10
+
+            Label:
+                markup: True
+                id: mileagerun1
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun2
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun3
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun4
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun5
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun6
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+            Label:
+                markup: True
+                id: mileagerun7
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun8
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun9
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun10
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun11
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun12
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+            Label:
+                markup: True
+                id: mileagerun13
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun14
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun15
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun16
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun17
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun18
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+            Label:
+                markup: True
+                id: mileagerun19
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun20
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun21
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun22
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun23
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun24
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun25
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun26
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun27
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: mileagerun28
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: " miles"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+        GridLayout:
+            cols: 7
+            rows: 4
+            pos_hint: {'center_x': .5, 'center_y': .69}
+            size_hint: .95, .45
+            color: 0, 0, 0, 0
+            spacing: 10, 10
+            padding: 10, 10
+
+            Label:
+                markup: True
+                id: goalmileage1
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage2
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage3
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage4
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage5
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage6
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+            Label:
+                markup: True
+                id: goalmileage7
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage8
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage9
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage10
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage11
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage12
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+            Label:
+                markup: True
+                id: goalmileage13
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage14
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage15
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage16
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage17
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage18
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+            Label:
+                markup: True
+                id: goalmileage19
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage20
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage21
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage22
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage23
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage24
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage25
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage26
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage27
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+            Label:
+                markup: True
+                id: goalmileage28
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                text: "Goal Mileage"
+                color: 0, 0, 0, 1
+                outline_color: .248, .228, .204, 1
+                font_size: 15
+
+
+
+
+
+
+
+
+
